@@ -2,11 +2,23 @@ import numpy as np
 from my_modules.data_handle import is_valid_line, grade, max_freq
 
 def valid_st (df):
+    '''
+    This function takes a DataFrame as input
+    Then prints the number of valid and invalid lines of data based on the task 2 requirements
+    '''
     total_valid = 0
     total_invalid = 0
     print()
     print('**** ANALYZING ****')
     print()
+
+    # Loop through each row (type series) in the DataFrame
+    # Split the series in each row by comma to get a list of values
+    # Check if the line is valid by calling the is_valid_line function
+    # If the line is valid, increment the total_valid variable by 1
+    # If the line is invalid, increment the total_invalid variable by 1
+
+    # The detailed report about the invalid lines will be printed out in the is_valid_line function
     for i in range(len(df)):
         line = df.iloc[i, 0].split(',')
         valid = is_valid_line(line)
@@ -27,10 +39,24 @@ def valid_st (df):
     print()
 
 def score_st(df):
+    '''
+    This function takes a DataFrame as input
+    Then prints the following statistics based on the task 3 requirements:
+    '''
+
+    # Create three empty numpy arrays to store the scores, skips, and incorrects
     scores = np.array([], dtype=int)
     skips = np.array([], dtype=int)
     incorrects = np.array([], dtype=int)
+    # count the total number of valid lines for the ratio statistics
     total_valid_lines = 0
+
+    # Loop through each row (type series) in the DataFrame
+    # Split the series in each row by comma to get a list of values
+    # Check if the line is valid by calling the is_valid_line function
+    # If the line is valid:
+    #   - Increment the total_valid_lines variable by 1
+    #   - Append the corresponding (gotten from the grade function) to the scores, skips, and incorrects nparrays
     for i in range(len(df)):
         line = df.iloc[i, 0].split(',')
         if is_valid_line(line, print_noti = False):
